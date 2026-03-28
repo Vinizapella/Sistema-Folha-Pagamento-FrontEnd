@@ -2,6 +2,7 @@ import Header from './components/layout/Header'
 import StatCard from './components/ui/StatCard'
 import CollaboratorForm from './components/collaborator/CollaboratorForm'
 import colaboradoresIcon from './assets/colaboradores.png'
+import CollaboratorList from './components/collaborator/CollaboratorList'
 
 function App() {
 
@@ -32,6 +33,8 @@ function App() {
         </div>
 
         <CollaboratorForm />
+
+        <CollaboratorList />
 
       </main>
 
