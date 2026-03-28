@@ -5,7 +5,7 @@ function CollaboratorForm() {
 
   return (
 
-    <div className="bg-white rounded-xl shadow-sm p-6 border-2">
+    <div className="bg-white rounded-xl shadow-sm p-6 border-2 mt-10">
 
         <div className="flex items-center gap-2 mb-1">
 
@@ -28,9 +28,13 @@ function CollaboratorForm() {
         <p className="text-sm font-medium text-gray-700 mb-2">Tipo de Vínculo</p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-7">
+
             <BondTypeCard icon="🏢" title="Funcionário Padrão" description="Apenas salário base" selected={true} />
+
             <BondTypeCard icon="📈" title="Comissionado" description="Base + comissão sobre vendas" selected={false} />
+
             <BondTypeCard icon="🏭" title="Produção" description="Base + bônus por peça" selected={false} />
+
         </div>
 
         <button className="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg text-sm">
@@ -42,7 +46,7 @@ function CollaboratorForm() {
     </div>
 
   )
-  
+
 }
 
 export default CollaboratorForm

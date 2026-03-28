@@ -21,7 +21,7 @@ function StatCard({ icon, label, value }) {
     </div>
 
   )
-  
+
 }
 
 export default StatCard

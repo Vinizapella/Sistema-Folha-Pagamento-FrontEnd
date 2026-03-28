@@ -3,6 +3,7 @@ import StatCard from './components/ui/StatCard'
 import CollaboratorForm from './components/collaborator/CollaboratorForm'
 import colaboradoresIcon from './assets/colaboradores.png'
 import CollaboratorList from './components/collaborator/CollaboratorList'
+import Footer from './components/layout/Footer'
 
 function App() {
 
@@ -12,7 +13,7 @@ function App() {
 
       <Header />
 
-      <main className="max-w-5xl mx-auto px-6 py-6">
+      <main className="max-w-5xl mx-auto mt-5 px-6 py-6">
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
 
@@ -37,6 +38,8 @@ function App() {
         <CollaboratorList />
 
       </main>
+
+      <Footer />
 
     </div>
 
