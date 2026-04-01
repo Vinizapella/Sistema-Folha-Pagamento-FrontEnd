@@ -12,7 +12,6 @@ function Footer() {
     <footer className="bg-gray-900 text-gray-400 mt-10 py-10 px-6 font-sans">
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-17">
 
-        {/* Logo e descrição */}
         <div className="md:col-span-1">
           <div className="flex items-center gap-2 mb-3">
             <IconUsers className="text-white" />
@@ -30,7 +29,6 @@ function Footer() {
           </div>
         </div>
 
-        {/* Empresa e Recursos */}
         <div className="grid grid-cols-2 gap-8 md:contents">
 
           <div className="md:ml-10">
@@ -55,7 +53,6 @@ function Footer() {
 
         </div>
 
-        {/* Contato */}
         <div>
           <h4 className="text-white font-medium mb-3">Contato</h4>
           <div className="flex items-center gap-2 mb-1 text-sm">

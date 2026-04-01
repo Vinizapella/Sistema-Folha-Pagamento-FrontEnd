@@ -13,7 +13,6 @@ function App() {
 
       <main className="max-w-5xl mx-auto mt-5 px-6 py-6">
 
-        {/* Cards de estatísticas */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           <StatCard
             icon={<IconUsers className="text-blue-600" />}
