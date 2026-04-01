@@ -4,8 +4,18 @@ import StatCard from '../components/ui/StatCard'
 import CollaboratorForm from '../features/collaborator/components/CollaboratorForm'
 import CollaboratorList from '../features/collaborator/components/CollaboratorList'
 import { IconUsers, IconDollar, IconTrending } from '../components/ui/Icons'
+import { useCollaboratorList } from '../features/collaborator/hooks/useCollaboratorList'
 
 export default function CollaboratorsPage() {
+  const { collaborators, loading, refresh } = useCollaboratorList()
+
+  const formatCurrency = (val) =>
+    new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(val || 0)
+
+  const totalCollaborators = collaborators.length
+  const totalPayroll = collaborators.reduce((acc, c) => acc + (c.finalSalary || 0), 0)
+  const totalExtras = collaborators.reduce((acc, c) => acc + (c.extras || 0), 0)
+
   return (
     <div className="bg-gray-100 min-h-screen">
       <Header />
@@ -15,22 +25,22 @@ export default function CollaboratorsPage() {
           <StatCard
             icon={<IconUsers className="text-blue-600" />}
             label="Colaboradores"
-            value="0"
+            value={loading ? '...' : totalCollaborators}
           />
           <StatCard
             icon={<IconDollar className="text-emerald-500" />}
             label="Folha Total"
-            value="R$ 0,00"
+            value={loading ? '...' : formatCurrency(totalPayroll)}
           />
           <StatCard
             icon={<IconTrending className="text-orange-500" />}
             label="Adicionais"
-            value="R$ 0,00"
+            value={loading ? '...' : formatCurrency(totalExtras)}
           />
         </div>
 
-        <CollaboratorForm />
-        <CollaboratorList />
+        <CollaboratorForm onSuccess={refresh} />
+        <CollaboratorList collaborators={collaborators} loading={loading} refresh={refresh} />
       </main>
 
       <Footer />

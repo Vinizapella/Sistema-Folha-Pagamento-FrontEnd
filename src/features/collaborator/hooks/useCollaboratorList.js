@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { collaboratorService } from '../../../services/collaboratorService'; 
+import { collaboratorService } from '../services/collaboratorService'
 
 export function useCollaboratorList() {
   const [collaborators, setCollaborators] = useState([])
@@ -8,7 +8,7 @@ export function useCollaboratorList() {
   const fetchCollaborators = async () => {
     try {
       setLoading(true)
-      const data = await collaboratorService.listAll() 
+      const data = await collaboratorService.listAll()
       setCollaborators(Array.isArray(data) ? data : [])
     } catch (error) {
       console.error("Erro ao buscar no Java:", error)

@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { collaboratorService } from '../services/collaboratorService'
 
-export function useCollaboratorForm() {
+
+export function useCollaboratorForm(onSuccess) {
   const initialState = {
     bond_type: 'STANDARD',
     registrationNumber: '',
@@ -21,7 +22,7 @@ export function useCollaboratorForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    
+
     const regNumber = Number(formData.registrationNumber)
     if (!formData.name.trim() || regNumber <= 0) {
       return alert("Verifique os campos obrigatórios!")
@@ -45,8 +46,8 @@ export function useCollaboratorForm() {
 
     try {
       await collaboratorService.register(payload)
-      alert("Sucesso!")
       setFormData(initialState)
+      if (onSuccess) onSuccess()
     } catch (error) {
       alert("Erro: " + error.message)
     } finally {
