@@ -1,4 +1,4 @@
-import InputField from '../ui/InputField'
+import InputField from '../../../components/ui/InputField'
 
 const ExtraFieldsLayout = ({ children }) => (
   <div className="bg-gray-100 p-6 rounded-2xl mb-6 border grid grid-cols-1 md:grid-cols-2 gap-5 animate-in fade-in slide-in-from-top-2 duration-300">

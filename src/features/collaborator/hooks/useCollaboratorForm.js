@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { collaboratorService } from '../../services/collaboratorService'
+import { collaboratorService } from '../services/collaboratorService'
 
 export function useCollaboratorForm() {
   const initialState = {

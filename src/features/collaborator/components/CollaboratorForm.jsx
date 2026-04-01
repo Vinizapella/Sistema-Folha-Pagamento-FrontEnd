@@ -1,6 +1,6 @@
-import { IconUserPlus, IconBriefcase, IconCommission, IconProduction } from '../ui/Icons'
-import InputField from '../ui/InputField'
-import BondTypeCard from '../ui/BondTypeCard'
+import { IconUserPlus, IconBriefcase, IconCommission, IconProduction } from '../../components/ui/Icons'
+import InputField from '../../components/ui/InputField'
+import BondTypeCard from '../../components/ui/BondTypeCard'
 import { CommissionFields, ProductionFields } from './CollaboratorFormFields'
 import { useCollaboratorForm } from './useCollaboratorForm' 
 

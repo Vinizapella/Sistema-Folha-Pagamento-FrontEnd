@@ -1,4 +1,4 @@
-import { IconUsers, IconTrash, IconBriefcase, IconCommission, IconProduction } from '../ui/Icons'
+import { IconUsers, IconTrash, IconBriefcase, IconCommission, IconProduction } from '../../components/ui/Icons'
 import { useCollaboratorList } from './useCollaboratorList'
 
 function CollaboratorList() {

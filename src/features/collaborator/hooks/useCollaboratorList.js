@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { collaboratorService } from '../../services/collaboratorService'; 
+import { collaboratorService } from '../../../services/collaboratorService'; 
 
 export function useCollaboratorList() {
   const [collaborators, setCollaborators] = useState([])
