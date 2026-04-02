@@ -1,4 +1,5 @@
-import { IconUsers, IconTrash, IconBriefcase, IconCommission, IconProduction, IconRotateCw } from '../../../components/ui/Icons'
+import { IconUsers, IconTrash, IconRotateCw } from '../../../components/ui/Icons'
+import { collaboratorService } from '../services/collaboratorService'
 
 function CollaboratorList({ collaborators, loading, refresh }) {
 
@@ -6,6 +7,21 @@ function CollaboratorList({ collaborators, loading, refresh }) {
     new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(val || 0)
 
   const totalPayroll = collaborators.reduce((acc, c) => acc + (c.finalSalary || 0), 0)
+
+  console.log('Colaboradores:', collaborators)
+
+  const handleDelete = async (id) => {
+    if (!confirm('Deseja realmente excluir este colaborador?')) return
+    try {
+
+      console.log(id);
+
+      await collaboratorService.delete(id)
+      refresh()
+    } catch (error) {
+      alert('Erro ao excluir: ' + error.message)
+    }
+  }
 
   return (
     <div className="bg-white rounded-xl shadow-sm p-6 mt-10 border-2">
@@ -45,6 +61,7 @@ function CollaboratorList({ collaborators, loading, refresh }) {
 
       ) : (
         <>
+          {/* Tabela — desktop */}
           <div className="hidden md:block overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
@@ -60,7 +77,7 @@ function CollaboratorList({ collaborators, loading, refresh }) {
                   <tr key={colab.id} className="hover:bg-gray-50 transition-colors">
                     <td className="py-4 px-2">
                       <p className="text-sm font-semibold text-gray-800">{colab.name}</p>
-                      <p className="text-xs text-gray-400">ID #{String(colab.registrationNumber).padStart(4, '0')}</p>
+                      <p className="text-xs text-gray-400">Resgitro #{String(colab.registrationNumber).padStart(4, '0')}</p>
                     </td>
                     <td className="py-4 px-2">
                       <BondBadge type={colab.bond_type} />
@@ -69,7 +86,10 @@ function CollaboratorList({ collaborators, loading, refresh }) {
                       <FinancialDetails colab={colab} format={formatCurrency} />
                     </td>
                     <td className="py-4 px-2 text-right">
-                      <button className="p-2 text-gray-300 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all">
+                      <button
+                        onClick={() => handleDelete(colab.id)}
+                        className="p-2 text-gray-300 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all"
+                      >
                         <IconTrash size={18} />
                       </button>
                     </td>
@@ -79,15 +99,19 @@ function CollaboratorList({ collaborators, loading, refresh }) {
             </table>
           </div>
 
+          {/* Cards — mobile */}
           <div className="flex flex-col gap-3 md:hidden">
             {collaborators.map((colab) => (
               <div key={colab.id} className="border border-gray-100 rounded-lg p-4">
                 <div className="flex items-start justify-between mb-2">
                   <div>
                     <p className="text-sm font-semibold text-gray-800">{colab.name}</p>
-                    <p className="text-xs text-gray-400">ID #{String(colab.registrationNumber).padStart(4, '0')}</p>
+                    <p className="text-xs text-gray-400">Resgitro #{String(colab.registrationNumber).padStart(4, '0')}</p>
                   </div>
-                  <button className="p-1.5 text-gray-300 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all">
+                  <button
+                    onClick={() => handleDelete(colab.id)}
+                    className="p-1.5 text-gray-300 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all"
+                  >
                     <IconTrash size={16} />
                   </button>
                 </div>
@@ -106,9 +130,9 @@ function CollaboratorList({ collaborators, loading, refresh }) {
 
 const BondBadge = ({ type }) => {
   const configs = {
-    STANDARD:     { label: 'Padrão',       color: 'bg-gray-200 text-gray-600'  },
-    COMMISSIONED: { label: 'Comissionado', color: 'bg-blue-600 text-white'     },
-    PRODUCTION:   { label: 'Produção',     color: 'bg-white text-gray-600 border'  },
+    STANDARD:     { label: 'Padrão',       color: 'bg-gray-200 text-gray-600' },
+    COMMISSIONED: { label: 'Comissionado', color: 'bg-blue-600 text-white'    },
+    PRODUCTION:   { label: 'Produção',     color: 'bg-white text-gray-600 border' },
   }
   const config = configs[type] || configs.STANDARD
   return (

@@ -21,10 +21,17 @@ export const collaboratorService = {
         return await response.json();
     },
 
-    async delete(id) {
-        const response = await fetch(`${API_URL}/${id}`, {
-            method: 'DELETE',
-        });
-        if (!response.ok) throw new Error('Erro ao deletar colaborador');
+    delete: async (id) => {
+    if (!id) throw new Error("ID não fornecido");
+    const response = await fetch(`${API_URL}/${id}`, {
+        method: 'DELETE',
+    });
+
+    if (!response.ok) {
+        // Tenta ler a mensagem de erro que vem do Java
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || 'Erro ao deletar no servidor');
     }
+    return true;
+}
 };

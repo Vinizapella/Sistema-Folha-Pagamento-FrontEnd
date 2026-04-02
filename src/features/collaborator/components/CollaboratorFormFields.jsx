@@ -10,9 +10,9 @@ export function CommissionFields({ formData, onChange }) {
   return (
     <ExtraFieldsLayout>
       <InputField
-        label="Total de Vendas (R$)" type="number"
+        label="Total de Vendas" type="number"
         value={formData.totalSales}
-        placeholder="0,00"
+        placeholder="0"
         onChange={(e) => onChange('totalSales', e.target.value)}
       />
       <InputField
